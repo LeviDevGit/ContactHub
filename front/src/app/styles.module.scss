@@ -1,0 +1,56 @@
+@use "../styles/abstracts/" as *;
+
+.box {
+  padding: 80px;
+  border: 1px solid white;
+}
+
+.box_header {
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1,
+  h2 {
+    color: $grey-1;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+
+    cursor: pointer;
+  }
+
+  h2:hover {
+    color: $grey-0;
+  }
+
+  div {
+    display: flex;
+    gap: 50px;
+  }
+}
+
+.box_body {
+  margin-top: 50px;
+}
+
+.box_card {
+  width: fit-content;
+  padding: 30px;
+
+  border: 1px solid white;
+
+  display: flex;
+  flex-direction: column;
+
+  span {
+    color: $grey-1;
+    font-size: 18px;
+  }
+}

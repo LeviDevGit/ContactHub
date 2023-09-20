@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.1",
     "pg": "^8.11.2",
     "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.1.6",
     "typeorm": "^0.3.17",
     "zod": "^3.21.4"
   },

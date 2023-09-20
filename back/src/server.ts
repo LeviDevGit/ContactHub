@@ -1,11 +1,11 @@
-import app from './app'
-import { AppDataSource } from './data-source'
+import app from "./app";
+import { AppDataSource } from "./data-source";
 
 AppDataSource.initialize()
   .then(() => {
-    console.log('Database is connected')
+    console.log("Database is connected");
     app.listen(9000, () => {
-      console.log('Server is running')
-    })
+      console.log("Server is running");
+    });
   })
-  .catch((err) => console.log(err))
+  .catch((err) => console.log(err));

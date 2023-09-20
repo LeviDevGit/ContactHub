@@ -1,23 +1,33 @@
 import { hash } from "bcryptjs";
-import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import Client from "./clients";
 
-@Entity('contacts')
+@Entity("contacts")
 class Contact {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ type: 'varchar', length: 45 })
+  @Column({ type: "varchar", length: 45 })
   fullName: string;
 
-  @Column({ type: 'varchar', length: 60, unique: true })
+  @Column({ type: "varchar", length: 60, unique: true })
   email: string;
 
-  @Column({ type: 'varchar', length: 120 })
+  @Column({ type: "varchar", length: 120 })
   password: string;
 
-  @Column({ type: 'varchar', length: 18 })
+  @Column({ type: "varchar", length: 18 })
   telephone: string;
+
+  @Column({ type: "varchar", length: 120 })
+  profileImage: string;
 
   @CreateDateColumn()
   registerDate: Date | string;
@@ -31,4 +41,4 @@ class Contact {
   }
 }
 
-export default Contact
+export default Contact;

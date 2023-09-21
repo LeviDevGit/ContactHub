@@ -7,32 +7,37 @@ import Client from "../../entities/clients";
 import { AppError } from "../../error";
 import { contactSchema } from "../../schemas/contacts";
 
-const createService = async (clientId: number, data: TContactSchemaReq): Promise<TClientSchemaRes> => {
-  const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact)
+const createService = async (
+  clientId: number,
+  data: TContactSchemaReq
+): Promise<TClientSchemaRes> => {
+  const contactRepository: Repository<Contact> =
+    AppDataSource.getRepository(Contact);
 
-  const clientRepository: Repository<Client> = AppDataSource.getRepository(Client)
+  const clientRepository: Repository<Client> =
+    AppDataSource.getRepository(Client);
 
   const client: Client | null = await clientRepository.findOneBy({
-    id: clientId
-  })
+    id: clientId,
+  });
 
   if (!client) {
-    throw new AppError("Client not found", 404)
+    throw new AppError("Client not found", 404);
   }
 
   const contact: Contact = contactRepository.create({
     client: client,
     fullName: data.fullName,
     email: data.email,
-    password: data.password,
-    telephone: data.telephone
-  })
+    telephone: data.telephone,
+    profileImage: data.profileImage,
+  });
 
-  await contactRepository.save(contact)
+  await contactRepository.save(contact);
 
-  const returnData: TContactSchema = contactSchema.parse(contact)
+  const returnData: TContactSchema = contactSchema.parse(contact);
 
-  return returnData
-}
+  return returnData;
+};
 
-export default createService
+export default createService;

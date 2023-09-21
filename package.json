@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "back": "cd back && npm run dev",
+    "front": "cd front && npm run dev",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

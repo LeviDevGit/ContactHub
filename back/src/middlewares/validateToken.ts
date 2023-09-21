@@ -14,7 +14,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   jwt.verify(token, process.env.SECRET_KEY!, (error: any, decoded: any) => {
     if (error) throw new AppError(error.message, 401);
 
-    res.locals.id = decoded.id
+    res.locals.id = decoded.id;
 
     return next();
   });

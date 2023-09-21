@@ -4,9 +4,8 @@ const contactSchema = z.object({
   id: z.number(),
   fullName: z.string().max(45),
   email: z.string().max(60),
-  password: z.string(),
   telephone: z.string().max(18),
-  profileImage: z.string().max(120),
+  profileImage: z.string().max(120).nullable(),
   registerDate: z.date(),
 });
 
@@ -15,7 +14,7 @@ const contactSchemaReq = contactSchema.omit({
   registerDate: true,
 });
 
-const contactSchemaRes = contactSchema.omit({ password: true });
+const contactSchemaRes = contactSchema.omit({});
 
 const contactsSchema = z.array(contactSchemaRes);
 

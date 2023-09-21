@@ -1,6 +1,4 @@
-import { hash } from "bcryptjs";
 import {
-  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -20,25 +18,17 @@ class Contact {
   @Column({ type: "varchar", length: 60, unique: true })
   email: string;
 
-  @Column({ type: "varchar", length: 120 })
-  password: string;
-
   @Column({ type: "varchar", length: 18 })
   telephone: string;
 
-  @Column({ type: "varchar", length: 120 })
-  profileImage: string;
+  @Column({ type: "varchar", length: 120, nullable: true })
+  profileImage: string | null;
 
   @CreateDateColumn()
   registerDate: Date | string;
 
   @ManyToOne(() => Client)
   client: Client;
-
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await hash(this.password, 10);
-  }
 }
 
 export default Contact;

@@ -4,21 +4,22 @@ import Client from "../entities/clients";
 import { AppDataSource } from "../data-source";
 import { AppError } from "../error";
 import { compare } from "bcryptjs";
-import jwt from "jsonwebtoken"
-import "dotenv/config"
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 const loginService = async (data: TLoginSchema): Promise<IToken> => {
-  const clientRepository: Repository<Client> = AppDataSource.getRepository(Client)
+  const clientRepository: Repository<Client> =
+    AppDataSource.getRepository(Client);
 
   const client: Client | null = await clientRepository.findOneBy({
-    email: data.email
-  })
+    email: data.email,
+  });
 
   if (!client) {
-    throw new AppError("Invalid credentials", 401)
+    throw new AppError("Invalid credentials", 401);
   }
 
-  const passwordMatch = await compare(data.password, client.password)
+  const passwordMatch = await compare(data.password, client.password);
 
   if (!passwordMatch) {
     throw new AppError("Invalid credentials", 401);
@@ -26,7 +27,7 @@ const loginService = async (data: TLoginSchema): Promise<IToken> => {
 
   const token = jwt.sign(
     {
-      id: client.id
+      id: client.id,
     },
     process.env.SECRET_KEY!,
     {
@@ -35,7 +36,7 @@ const loginService = async (data: TLoginSchema): Promise<IToken> => {
     }
   );
 
-  return { token }
-}
+  return { token };
+};
 
-export default loginService
+export default loginService;

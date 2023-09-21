@@ -18,12 +18,8 @@ const validateClient = async (
     id: id,
   });
 
-  try {
-    if (!client) {
-      throw new AppError("Client not found", 404);
-    }
-  } catch (err) {
-    next(err);
+  if (!client) {
+    throw new AppError("Client not found", 404);
   }
 
   return next();

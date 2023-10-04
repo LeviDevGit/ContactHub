@@ -5,6 +5,10 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Input from "@/components/Input";
+import styles from "./styles.module.scss";
+import Image from "next/image";
+import register from "@/../public/register.svg";
+import AcessImage from "@/components/AcessImage";
 
 interface ISubmitDataRegister {
   fullName: string;
@@ -42,22 +46,31 @@ export default function Register() {
   };
 
   return (
-    <main>
-      <h1>Cadastro</h1>
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            name={"fullName"}
-            control={control}
-            placeholder="Nome Completo"
-          />
-          <Input name={"email"} control={control} placeholder="Email" />
-          <Input name={"password"} control={control} placeholder="Senha" />
-          <Input name={"telephone"} control={control} placeholder="Telefone" />
-          <button type="submit">Cadastrar</button>
-        </form>
+    <main className={styles.container}>
+      <div className={styles.painel}>
+        <AcessImage image={register} />
+        <div className={styles.painel_form}>
+          <h1>Cadastro</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              name={"fullName"}
+              control={control}
+              placeholder="Nome Completo"
+            />
+            <Input name={"email"} control={control} placeholder="Email" />
+            <Input name={"password"} control={control} placeholder="Senha" />
+            <Input
+              name={"telephone"}
+              control={control}
+              placeholder="Telefone"
+            />
+            <div className={styles.painel_form_button}>
+              <button type="submit">PRÓXIMO</button>
+              <Link href="/login">LOGIN</Link>
+            </div>
+          </form>
+        </div>
       </div>
-      <Link href="/login">Login</Link>
     </main>
   );
 }

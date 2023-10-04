@@ -4,6 +4,7 @@ import {
   ControllerRenderProps,
   FieldValues,
 } from "react-hook-form";
+import styles from "./styles.module.scss";
 
 interface IInputProps {
   name: any;
@@ -18,7 +19,7 @@ export default function Input({ name, control, placeholder }: IInputProps) {
       control={control}
       render={({ field }) => {
         return (
-          <div>
+          <div className={styles.container}>
             <input
               type="text"
               placeholder={placeholder}

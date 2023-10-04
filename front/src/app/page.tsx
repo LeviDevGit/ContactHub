@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import styles from "./styles.module.scss"
+import { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 import { useRouter } from "next/navigation";
 import { fetchApi } from "@/services/api";
 
@@ -15,19 +15,21 @@ interface IContent {
 
 export default function Home() {
   const router = useRouter();
-  const [content, setContent] = useState<IContent[]>()
+  const [content, setContent] = useState<IContent[]>();
 
   useEffect(() => {
     const handleSubmit = async () => {
       try {
         const token = localStorage.getItem("token");
+        console.log(token);
         if (!token) {
           router.push("/login");
+          return;
         }
-        const data = await fetchApi<IContent[]>('clients/contact/', {
+        const data = await fetchApi<IContent[]>("clients/contact/", {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
         });
         setContent(data);
@@ -36,7 +38,7 @@ export default function Home() {
       }
     };
     handleSubmit();
-  }, [])
+  }, []);
 
   return (
     <main>
@@ -51,18 +53,20 @@ export default function Home() {
         </header>
         <div className={styles.box_body}>
           <div className={styles.box_card}>
-            {content ? (content.map((e) => {
-              return (
-                <div>
-                  <span>{e.fullName}</span>
-                  <span>{e.email}</span>
-                  <span>{e.telephone}</span>
-                </div>
-              )
-            })) : (null)}
+            {content
+              ? content.map((e) => {
+                  return (
+                    <div>
+                      <span>{e.fullName}</span>
+                      <span>{e.email}</span>
+                      <span>{e.telephone}</span>
+                    </div>
+                  );
+                })
+              : null}
           </div>
         </div>
       </div>
     </main>
-  )
+  );
 }

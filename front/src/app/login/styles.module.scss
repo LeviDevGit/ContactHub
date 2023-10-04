@@ -1,0 +1,81 @@
+@use "../../styles/abstracts/" as *;
+
+.container {
+  box-sizing: border-box;
+
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+
+  background-color: $pallete-4;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.painel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.painel_form {
+  // border: 1px solid black;
+
+  h1 {
+    margin-bottom: 30px;
+
+    font-size: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.painel_form_button {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    width: 135px;
+    padding: 5px 0;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border: 2px solid $pallete-0;
+    border-radius: 3px;
+  }
+
+  button {
+    background-color: $pallete-0;
+    color: $grey-0;
+  }
+
+  a {
+    text-align: center;
+    color: $pallete-0;
+  }
+}
+
+.demo_button {
+  width: 100%;
+
+  margin-top: 20px;
+  border: 2px solid $pallete-0;
+  padding: 5px 0;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: $grey-0;
+
+  background-color: $pallete-0;
+  border-radius: 3px;
+}

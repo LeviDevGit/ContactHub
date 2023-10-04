@@ -5,6 +5,10 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Input from "@/components/Input";
+import styles from "./styles.module.scss";
+import Image from "next/image";
+import login from "@/../public/login.svg";
+import AcessImage from "@/components/AcessImage";
 
 interface ISubmitDataLogin {
   email: string;
@@ -43,16 +47,22 @@ export default function Login() {
   };
 
   return (
-    <main>
-      <h1>Login</h1>
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input name={"email"} control={control} placeholder="Email" />
-          <Input name={"password"} control={control} placeholder="Senha" />
-          <button type="submit">Login</button>
-        </form>
+    <main className={styles.container}>
+      <div className={styles.painel}>
+        <AcessImage image={login} />
+        <div className={styles.painel_form}>
+          <h1>Login</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input name={"email"} control={control} placeholder="Email" />
+            <Input name={"password"} control={control} placeholder="Senha" />
+            <div className={styles.painel_form_button}>
+              <button type="submit">PRÓXIMO</button>
+              <Link href="/register">CADASTRO</Link>
+            </div>
+          </form>
+          <button className={styles.demo_button}>Demo Novo Usuário</button>
+        </div>
       </div>
-      <Link href="/register">Cadastro</Link>
     </main>
   );
 }

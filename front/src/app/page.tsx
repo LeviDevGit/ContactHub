@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
 import { useRouter } from "next/navigation";
 import { fetchApi } from "@/services/api";
+import styles from "./styles.module.scss";
+import HomeHeader from "@/components/HomeHeader";
+import HomeSearch from "@/components/HomeBody/HomeSearch";
 
 interface IContent {
   id: number;
@@ -16,26 +18,26 @@ interface IContent {
 export default function Home() {
   const router = useRouter();
   const [content, setContent] = useState<IContent[]>();
+  const [signout, setSignOut] = useState<boolean>(false);
 
   useEffect(() => {
     const handleSubmit = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log(token);
+
         if (!token) {
           router.push("/login");
           return;
+        } else {
+          const data = await fetchApi<IContent[]>("clients/contact/", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setContent(data);
         }
-        const data = await fetchApi<IContent[]>("clients/contact/", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setContent(data);
-      } catch (error) {
-        console.error(error);
-      }
+      } catch (error) {}
     };
     handleSubmit();
   }, []);
@@ -43,15 +45,9 @@ export default function Home() {
   return (
     <main>
       <div className={styles.box}>
-        <header className={styles.box_header}>
-          <h1>Contact Hub</h1>
-          <div>
-            <h2>Contatos</h2>
-            <h2>Perfil</h2>
-          </div>
-          <h2>Sair</h2>
-        </header>
+        <HomeHeader setSignOut={setSignOut} signout={signout} />
         <div className={styles.box_body}>
+          <HomeSearch />
           <div className={styles.box_card}>
             {content
               ? content.map((e) => {

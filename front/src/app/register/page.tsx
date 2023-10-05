@@ -48,7 +48,6 @@ export default function Register() {
   return (
     <main className={styles.container}>
       <div className={styles.painel}>
-        <AcessImage image={register} />
         <div className={styles.painel_form}>
           <h1>Cadastro</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,6 +69,7 @@ export default function Register() {
             </div>
           </form>
         </div>
+        <AcessImage image={register} />
       </div>
     </main>
   );

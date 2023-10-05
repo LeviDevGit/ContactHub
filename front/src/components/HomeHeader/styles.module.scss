@@ -1,0 +1,36 @@
+@use "../../styles/abstracts/" as *;
+
+.container {
+  border: 1px solid red;
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: $grey-900;
+    font-size: 30px;
+  }
+
+  button {
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+
+    color: $grey-900;
+    // filter: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(18%)
+    //   hue-rotate(265deg) brightness(101%) contrast(104%);
+  }
+}
+
+.button_name {
+  font-size: 1rem;
+}
+
+.button_signout {
+  position: absolute;
+  top: 40px;
+  right: 0;
+}

@@ -1,8 +1,6 @@
 @use "../../styles/abstracts/" as *;
 
 .container {
-  border: 1px solid black;
-
   @media (width < 800px) {
     .image {
       display: none;

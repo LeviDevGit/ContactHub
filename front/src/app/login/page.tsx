@@ -1,23 +1,13 @@
 "use client";
 
-import { fetchApi } from "@/services/api";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import Input from "@/components/Input";
 import styles from "./styles.module.scss";
-import Image from "next/image";
 import login from "@/../public/login.svg";
+import Input from "@/components/Input";
 import AcessImage from "@/components/AcessImage";
-
-interface ISubmitDataLogin {
-  email: string;
-  password: string;
-}
-
-interface IToken {
-  token: string;
-}
+import { IDataLogin, onSubmitDataDemo, onSubmitDataLogin } from "./utils";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const router = useRouter();
@@ -26,25 +16,7 @@ export default function Login() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<ISubmitDataLogin>({ defaultValues: { email: "", password: "" } });
-
-  const onSubmit = async (data: ISubmitDataLogin) => {
-    console.log(data);
-    // try {
-    //   const response: IToken = await fetchApi("login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-    //   localStorage.setItem("token", response.token);
-    //   router.push("/");
-    //   console.log(response);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
+  } = useForm<IDataLogin>({ defaultValues: { email: "", password: "" } });
 
   return (
     <main className={styles.container}>
@@ -52,7 +24,9 @@ export default function Login() {
         <AcessImage image={login} />
         <div className={styles.painel_form}>
           <h1>Login</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={handleSubmit((data) => onSubmitDataLogin(router, data))}
+          >
             <Input name={"email"} control={control} placeholder="Email" />
             <Input name={"password"} control={control} placeholder="Senha" />
             <div className={styles.painel_form_button}>
@@ -60,7 +34,14 @@ export default function Login() {
               <Link href="/register">CADASTRO</Link>
             </div>
           </form>
-          <button className={styles.demo_button}>Demo Novo Usuário</button>
+          <button
+            className={styles.demo_button}
+            onClick={() => {
+              onSubmitDataDemo(router);
+            }}
+          >
+            Demo Novo Usuário
+          </button>
         </div>
       </div>
     </main>

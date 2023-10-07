@@ -40,4 +40,16 @@
 }
 
 .add {
+  button {
+    padding: 5px;
+
+    background-color: $pallete-0;
+    color: $grey-0;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border: 2px solid $pallete-0;
+    border-radius: 3px;
+  }
 }

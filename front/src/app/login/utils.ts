@@ -27,7 +27,6 @@ export const onSubmitDataLogin = async (
 
     if (response.token) {
       localStorage.setItem("token", response.token);
-      console.log(response);
       router.push("/");
     }
   } catch (error) {}
@@ -45,7 +44,6 @@ export const onSubmitDataDemo = async (router: AppRouterInstance) => {
 
     if (response.token) {
       localStorage.setItem("token", response.token);
-      console.log(response);
       router.push("/");
     } else {
       const registration = await fetchApi("clients", {

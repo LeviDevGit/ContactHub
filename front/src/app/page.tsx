@@ -6,6 +6,7 @@ import { fetchApi } from "@/services/api";
 import styles from "./styles.module.scss";
 import HomeHeader from "@/components/HomeHeader";
 import HomeSearch from "@/components/HomeBody/HomeSearch";
+import HomeAddModal from "@/components/HomeBody/HomeAddModal";
 
 interface IContent {
   id: number;
@@ -19,6 +20,7 @@ export default function Home() {
   const router = useRouter();
   const [content, setContent] = useState<IContent[]>();
   const [signout, setSignOut] = useState<boolean>(false);
+  const [addDialog, setAddDialog] = useState<boolean>(false);
 
   useEffect(() => {
     const handleSubmit = async () => {
@@ -44,10 +46,11 @@ export default function Home() {
 
   return (
     <main>
+      {addDialog ? <HomeAddModal setAddDialog={setAddDialog} /> : null}
       <div className={styles.box}>
         <HomeHeader setSignOut={setSignOut} signout={signout} />
         <div className={styles.box_body}>
-          <HomeSearch />
+          <HomeSearch setAddDialog={setAddDialog} />
           <div className={styles.box_card}>
             {content
               ? content.map((e) => {

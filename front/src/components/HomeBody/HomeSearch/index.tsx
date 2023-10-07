@@ -1,8 +1,13 @@
 import Image from "next/image";
 import search from "@/../public/search.svg";
 import styles from "./styles.module.scss";
+import { Dispatch, SetStateAction } from "react";
 
-export default function HomeSearch() {
+interface IHomeSearchProps {
+  setAddDialog: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function HomeSearch({ setAddDialog }: IHomeSearchProps) {
   return (
     <div className={styles.container}>
       <div className={styles.search}>
@@ -12,7 +17,13 @@ export default function HomeSearch() {
         </button>
       </div>
       <div className={styles.add}>
-        <button>Adicionar Contato</button>
+        <button
+          onClick={() => {
+            setAddDialog(true);
+          }}
+        >
+          Adicionar Contato
+        </button>
       </div>
     </div>
   );

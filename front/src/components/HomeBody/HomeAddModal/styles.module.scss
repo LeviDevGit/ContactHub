@@ -1,0 +1,81 @@
+@use "../../../styles/abstracts/" as *;
+
+.container {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(18, 18, 20, 0.7);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interface {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid pink;
+
+  background-color: white;
+}
+
+.interface_header {
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 0.9rem;
+
+  button {
+    background-color: transparent;
+
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+.interface_body {
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.interface_footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  button {
+    padding: 7px 4px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border-radius: 5px;
+  }
+}
+
+.interface_footer_cancel {
+  border: 2px solid $grey-0;
+
+  background-color: transparent;
+  color: $grey-900;
+}
+
+.interface_footer_create {
+  border: 2px solid $pallete-0;
+
+  background-color: $pallete-0;
+  color: $grey-0;
+}

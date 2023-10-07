@@ -1,8 +1,12 @@
 @use "../../../styles/abstracts/" as *;
 
 .container {
+  width: 80%;
+  min-width: 250px;
+
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
 }
 

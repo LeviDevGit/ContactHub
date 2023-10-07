@@ -6,9 +6,14 @@ import expand from "@/../public/expand.svg";
 interface iHomeHeaderProps {
   setSignOut: Dispatch<SetStateAction<boolean>>;
   signout: boolean;
+  name: string;
 }
 
-export default function HomeHeader({ setSignOut, signout }: iHomeHeaderProps) {
+export default function HomeHeader({
+  setSignOut,
+  signout,
+  name,
+}: iHomeHeaderProps) {
   return (
     <header className={styles.container}>
       <h1>Contatos</h1>
@@ -18,7 +23,7 @@ export default function HomeHeader({ setSignOut, signout }: iHomeHeaderProps) {
           setSignOut(!signout);
         }}
       >
-        Nome
+        {name}
         <Image src={expand} alt="Expandir" />
       </button>
       {signout ? (

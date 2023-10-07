@@ -4,18 +4,24 @@ import Contact from "../../entities/contacts";
 import { AppDataSource } from "../../data-source";
 import { contactsSchema } from "../../schemas/contacts";
 
-const readAllService = async (clientId: number): Promise<TContactsSchema> => {
-  const contactRepository: Repository<Contact> = AppDataSource.getRepository(Contact)
+const readAllService = async (clientId: number): Promise<any> => {
+  const contactRepository: Repository<Contact> =
+    AppDataSource.getRepository(Contact);
 
   const contact: Contact[] = await contactRepository.findBy({
     client: {
-      id: clientId
-    }
-  })
+      id: clientId,
+    },
+  });
 
-  const returnData: TContactsSchema = contactsSchema.parse(contact)
+  const returnData: TContactsSchema = contactsSchema.parse(contact);
 
-  return returnData
-}
+  const returnCreated = {
+    clientId: clientId,
+    contacts: returnData,
+  };
 
-export default readAllService
+  return returnCreated;
+};
+
+export default readAllService;

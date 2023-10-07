@@ -1,0 +1,39 @@
+@use "../../../styles/abstracts/" as *;
+
+.container {
+  width: 100%;
+  min-width: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // * {
+  //   border: 1px solid black;
+  // }
+}
+
+.box_image {
+  width: 70px;
+  height: 70px;
+
+  border: 1px solid $grey-900;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    border: none;
+    border-radius: 50%;
+  }
+}
+
+.box_text {
+  min-width: 80px;
+
+  * {
+    font-size: 15px;
+  }
+}

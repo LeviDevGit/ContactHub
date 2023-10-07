@@ -6,17 +6,28 @@
 }
 
 .box_body {
+  min-width: 250px;
   margin-top: 50px;
-}
-
-.box_card {
-  width: fit-content;
-  padding: 30px;
-
-  border: 1px solid green;
 
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+
+  // border: 1px solid gold;
+}
+
+.box_card {
+  margin-top: 30px;
+
+  width: 80%;
+  min-width: 250px;
+
+  // border: 1px solid green;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 
   span {
     color: $grey-0;

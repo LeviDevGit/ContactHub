@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { fetchApi } from "@/services/api";
 import styles from "./styles.module.scss";
@@ -29,8 +29,12 @@ export default function Home() {
   const [signout, setSignOut] = useState<boolean>(false);
   const [addDialog, setAddDialog] = useState<boolean>(false);
   const [profileName, setProfileName] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
+  const [handleBool, setHandleBool] = useState<boolean>(false);
 
   useEffect(() => {
+    setHandleBool(false);
+
     const handleSubmit = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -63,7 +67,21 @@ export default function Home() {
       } catch (error) {}
     };
     handleSubmit();
-  }, []);
+  }, [handleBool]);
+
+  useEffect(() => {
+    if (searchText !== "") {
+      let newData = content?.filter((e) => {
+        return (
+          e.fullName.toLowerCase().includes(searchText.toLowerCase()) ||
+          e.email.toLowerCase().includes(searchText.toLowerCase())
+        );
+      });
+      setContent(newData);
+    } else {
+      setHandleBool(true);
+    }
+  }, [searchText]);
 
   return (
     <main>
@@ -75,8 +93,15 @@ export default function Home() {
           name={profileName}
         />
         <div className={styles.box_body}>
-          <HomeSearch setAddDialog={setAddDialog} />
+          <HomeSearch
+            setAddDialog={setAddDialog}
+            setSearchText={setSearchText}
+          />
           <div className={styles.box_card}>
+            <div className={styles.box_info}>
+              <h1>Informações básicas</h1>
+              <span>Telefone</span>
+            </div>
             {content
               ? content.map((e) => {
                   return <HomeCard contacts={e} key={e.id} />;

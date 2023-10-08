@@ -31,9 +31,11 @@
 }
 
 .box_text {
+  width: 120px;
   min-width: 80px;
 
   * {
     font-size: 15px;
+    text-align: start;
   }
 }

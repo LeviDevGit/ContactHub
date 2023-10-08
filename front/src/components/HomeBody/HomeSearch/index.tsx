@@ -5,13 +5,23 @@ import { Dispatch, SetStateAction } from "react";
 
 interface IHomeSearchProps {
   setAddDialog: Dispatch<SetStateAction<boolean>>;
+  setSearchText: Dispatch<SetStateAction<string>>;
 }
 
-export default function HomeSearch({ setAddDialog }: IHomeSearchProps) {
+export default function HomeSearch({
+  setAddDialog,
+  setSearchText,
+}: IHomeSearchProps) {
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        <input type="text" placeholder="Procurar contatos" />
+        <input
+          type="text"
+          placeholder="Procurar contatos"
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
         <button>
           <Image src={search} alt="Procurar" />
         </button>

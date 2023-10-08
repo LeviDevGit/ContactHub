@@ -2,7 +2,6 @@
 
 .box {
   padding: 80px;
-  border: 1px solid black;
 }
 
 .box_body {
@@ -19,7 +18,7 @@
 .box_card {
   margin-top: 30px;
 
-  width: 80%;
+  width: 100%;
   min-width: 250px;
 
   // border: 1px solid green;
@@ -32,5 +31,18 @@
   span {
     color: $grey-0;
     font-size: 18px;
+  }
+}
+
+.box_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1,
+  span {
+    font-size: 18px;
+    font-weight: 400;
+    color: $grey-900;
   }
 }

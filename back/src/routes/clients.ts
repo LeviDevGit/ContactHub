@@ -8,6 +8,7 @@ import {
 import validateData from "../middlewares/validateData";
 import { clientSchemaPart, clientSchemaReq } from "../schemas/clients";
 import validateClient from "../middlewares/validateClient";
+import validateToken from "../middlewares/validateToken";
 
 const clientRoutes: Router = Router();
 
@@ -19,6 +20,6 @@ clientRoutes.patch(
   validateData(clientSchemaPart),
   updateClient
 );
-clientRoutes.delete("/:id", validateClient, deleteClient);
+clientRoutes.delete("/:id", validateToken, validateClient, deleteClient);
 
 export default clientRoutes;

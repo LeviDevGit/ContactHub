@@ -1,17 +1,19 @@
-import { Repository } from "typeorm"
-import { AppDataSource } from "../../data-source"
-import Client from "../../entities/clients"
+import { Repository } from "typeorm";
+import { AppDataSource } from "../../data-source";
+import Client from "../../entities/clients";
 
 const deleteService = async (id: number): Promise<void> => {
-  const clientRepository: Repository<Client> = AppDataSource.getRepository(Client)
+  console.log("teste");
+  const clientRepository: Repository<Client> =
+    AppDataSource.getRepository(Client);
 
   const client: Client | null = await clientRepository.findOneBy({
-    id: id
-  })
+    id: id,
+  });
 
-  await clientRepository.remove(client!)
+  await clientRepository.remove(client!);
 
-  return
-}
+  return;
+};
 
-export default deleteService
+export default deleteService;

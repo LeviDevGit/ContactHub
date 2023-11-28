@@ -5,7 +5,7 @@ import Contact from "../../entities/contacts";
 import { AppDataSource } from "../../data-source";
 import Client from "../../entities/clients";
 import { AppError } from "../../error";
-import { contactSchema } from "../../schemas/contacts";
+import { contactSchema, contactSchemaReq } from "../../schemas/contacts";
 
 const createService = async (
   clientId: number,
@@ -25,12 +25,11 @@ const createService = async (
     throw new AppError("Client not found", 404);
   }
 
+  data = contactSchemaReq.parse(data);
+
   const contact: Contact = contactRepository.create({
     client: client,
-    fullName: data.fullName,
-    email: data.email,
-    telephone: data.telephone,
-    profileImage: data.profileImage,
+    ...data,
   });
 
   await contactRepository.save(contact);

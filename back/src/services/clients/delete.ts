@@ -3,7 +3,6 @@ import { AppDataSource } from "../../data-source";
 import Client from "../../entities/clients";
 
 const deleteService = async (id: number): Promise<void> => {
-  console.log("teste");
   const clientRepository: Repository<Client> =
     AppDataSource.getRepository(Client);
 
